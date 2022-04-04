@@ -1,0 +1,57 @@
+env:
+  browser: true
+  es2021: true
+extends:
+  - eslint:recommended
+  - plugin:react/recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:import/recommended
+  - airbnb-base
+  - prettier
+parser: "@typescript-eslint/parser"
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: latest
+  sourceType: module
+plugins:
+  - react
+  - "@typescript-eslint"
+  - import
+settings:
+  {
+    "import/parsers": { "@typescript-eslint/parser": [".ts", ".tsx"] },
+    "import/resolver": { "typescript": {}, "node": { "extensions": [".js", ".jsx", ".ts", ".tsx"] } },
+  }
+rules: {
+    "quotes": ["error", "double"],
+    "import/prefer-default-export": "off",
+    "no-unused-vars": "error",
+
+    "padding-line-between-statements":
+      [
+        "error",
+        { "blankLine": "always", "prev": "*", "next": "multiline-block-like" },
+        { "blankLine": "always", "prev": "multiline-block-like", "next": "*" },
+        { "blankLine": "always", "prev": "*", "next": ["const", "let", "export"] },
+        { "blankLine": "always", "prev": ["const", "let", "export"], "next": "*" },
+        { "blankLine": "any", "prev": ["const", "let", "export"], "next": ["const", "let", "export"] },
+        { "blankLine": "always", "prev": "*", "next": "return" },
+        { "blankLine": "always", "prev": "if", "next": "if" },
+      ],
+
+    # Import Static Analysis
+    "import/no-cycle": "error",
+
+    # Import Warning
+    "import/no-mutable-exports": "error",
+
+    # Import Style Guide
+    "import/order":
+      [
+        "error",
+        { groups: ["builtin", "external", "parent", "sibling", "index"], alphabetize: { order: "asc" } },
+      ],
+    "import/newline-after-import": ["error", { "count": 1 }],
+    "import/no-duplicates": "error",
+  }
