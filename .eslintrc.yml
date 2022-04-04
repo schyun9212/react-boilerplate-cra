@@ -1,6 +1,8 @@
 env:
   browser: true
   es2021: true
+  jest: true
+  node: true
 extends:
   - eslint:recommended
   - plugin:react/recommended
@@ -24,7 +26,9 @@ settings:
     "import/resolver": { "typescript": {}, "node": { "extensions": [".js", ".jsx", ".ts", ".tsx"] } },
   }
 rules: {
-    "quotes": ["error", "double"],
+    "import/extensions":
+      ["error", "ignorePackages", { "js": "never", "jsx": "never", "ts": "never", "tsx": "never" }],
+
     "import/prefer-default-export": "off",
     "no-unused-vars": "error",
 
